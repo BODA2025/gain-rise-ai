@@ -18,9 +18,7 @@ export const Route = createFileRoute("/profile")({
 function ProfilePage() {
   return (
     <>
-      <TranslatedPageHeader namespace="pages.profile" />}
-        description="Fine-tune the details that shape every workout, meal, and insight."
-      />
+      <TranslatedPageHeader namespace="pages.profile" />
       <Section>
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 text-center backdrop-blur">

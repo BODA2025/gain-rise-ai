@@ -58,9 +58,7 @@ const GROUPS = [
 function FeaturesPage() {
   return (
     <>
-      <TranslatedPageHeader namespace="pages.features" />}
-        description="Everything you need to train, fuel, and track — thoughtfully designed and beautifully connected."
-      />
+      <TranslatedPageHeader namespace="pages.features" />
       <Section>
         <div className="space-y-16">
           {GROUPS.map((g) => (

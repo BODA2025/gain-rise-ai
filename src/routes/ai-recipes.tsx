@@ -55,9 +55,7 @@ function AIRecipesPage() {
 
   return (
     <>
-      <TranslatedPageHeader namespace="pages.aiRecipes" />}
-        description="Enter your ingredients. FitAI writes a recipe that tastes great and hits your macros."
-      />
+      <TranslatedPageHeader namespace="pages.aiRecipes" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

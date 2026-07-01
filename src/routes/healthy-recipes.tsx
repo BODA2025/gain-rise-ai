@@ -32,9 +32,7 @@ const RECIPES = [
 function HealthyRecipesPage() {
   return (
     <>
-      <TranslatedPageHeader namespace="pages.healthyRecipes" />}
-        description="A curated library of chef-tested, macro-balanced recipes you'll actually make twice."
-      />
+      <TranslatedPageHeader namespace="pages.healthyRecipes" />
       <Section>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {RECIPES.map((r, i) => (

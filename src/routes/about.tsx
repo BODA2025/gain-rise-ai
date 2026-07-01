@@ -26,9 +26,7 @@ const VALUES = [
 function AboutPage() {
   return (
     <>
-      <TranslatedPageHeader namespace="pages.about" />}
-        description="FitAI was born from a simple frustration: generic plans don't work. We built the coach we wished we had — one that listens, learns, and shows up every day."
-      />
+      <TranslatedPageHeader namespace="pages.about" />
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>

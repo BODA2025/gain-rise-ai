@@ -52,9 +52,7 @@ function ExerciseLibraryPage() {
 
   return (
     <>
-      <TranslatedPageHeader namespace="pages.exerciseLibrary" />}
-        description="Search by name or muscle group. Tap any exercise for form cues and smart swaps."
-      />
+      <TranslatedPageHeader namespace="pages.exerciseLibrary" />
       <Section>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative w-full sm:max-w-sm">

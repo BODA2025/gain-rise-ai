@@ -40,9 +40,7 @@ function MealPlannerPage() {
 
   return (
     <>
-      <TranslatedPageHeader namespace="pages.aiMealPlanner" />}
-        description="Answer a few questions. Get a 7-day meal plan built around your calories, macros, and taste."
-      />
+      <TranslatedPageHeader namespace="pages.aiMealPlanner" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

@@ -38,9 +38,7 @@ function BMIPage() {
 
   return (
     <>
-      <TranslatedPageHeader namespace="pages.bmi" />}
-        description="A quick, no-signup BMI calculator with useful context — not judgment."
-      />
+      <TranslatedPageHeader namespace="pages.bmi" />
       <Section>
         <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

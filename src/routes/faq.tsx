@@ -32,9 +32,7 @@ function FAQPage() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <>
-      <TranslatedPageHeader namespace="pages.faq" />}
-        description="Everything you might want to know before diving in."
-      />
+      <TranslatedPageHeader namespace="pages.faq" />
       <Section>
         <div className="mx-auto max-w-3xl space-y-3">
           {FAQS.map((f, i) => {

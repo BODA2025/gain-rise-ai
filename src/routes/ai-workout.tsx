@@ -40,9 +40,7 @@ function WorkoutGenPage() {
 
   return (
     <>
-      <TranslatedPageHeader namespace="pages.aiWorkout" />}
-        description="Tell FitAI your goal and gear. Get a smart, progressive plan tailored to today."
-      />
+      <TranslatedPageHeader namespace="pages.aiWorkout" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">
