@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { Camera, Target, Ruler, Weight } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
@@ -18,9 +18,7 @@ export const Route = createFileRoute("/profile")({
 function ProfilePage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Profile"
-        title={<>Your <span className="text-gradient">FitAI profile</span></>}
+      <TranslatedPageHeader namespace="pages.profile" />}
         description="Fine-tune the details that shape every workout, meal, and insight."
       />
       <Section>

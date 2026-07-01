@@ -1,44 +1,46 @@
 import { Link } from "@tanstack/react-router";
 import { Dumbbell, Github, Instagram, Twitter, Youtube } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const COLS = [
   {
-    title: "Product",
+    titleKey: "footer.product",
     links: [
-      { to: "/features", label: "Features" },
-      { to: "/ai-workout", label: "AI Workout Generator" },
-      { to: "/ai-meal-planner", label: "AI Meal Planner" },
-      { to: "/ai-recipes", label: "AI Recipes" },
-      { to: "/bmi-calculator", label: "BMI Calculator" },
+      { to: "/features", key: "footer.features" },
+      { to: "/ai-workout", key: "footer.aiWorkout" },
+      { to: "/ai-meal-planner", key: "footer.aiMealPlanner" },
+      { to: "/ai-recipes", key: "footer.aiRecipes" },
+      { to: "/bmi-calculator", key: "footer.bmi" },
     ],
   },
   {
-    title: "Explore",
+    titleKey: "footer.explore",
     links: [
-      { to: "/exercise-library", label: "Exercise Library" },
-      { to: "/healthy-recipes", label: "Healthy Recipes" },
-      { to: "/dashboard", label: "Dashboard" },
-      { to: "/profile", label: "Profile" },
+      { to: "/exercise-library", key: "footer.exerciseLibrary" },
+      { to: "/healthy-recipes", key: "footer.healthyRecipes" },
+      { to: "/dashboard", key: "footer.dashboard" },
+      { to: "/profile", key: "footer.profile" },
     ],
   },
   {
-    title: "Company",
+    titleKey: "footer.company",
     links: [
-      { to: "/about", label: "About" },
-      { to: "/contact", label: "Contact" },
-      { to: "/faq", label: "FAQ" },
+      { to: "/about", key: "footer.about" },
+      { to: "/contact", key: "footer.contact" },
+      { to: "/faq", key: "footer.faq" },
     ],
   },
   {
-    title: "Legal",
+    titleKey: "footer.legal",
     links: [
-      { to: "/privacy", label: "Privacy Policy" },
-      { to: "/terms", label: "Terms of Service" },
+      { to: "/privacy", key: "footer.privacy" },
+      { to: "/terms", key: "footer.terms" },
     ],
   },
 ] as const;
 
 export function SiteFooter() {
+  const { t } = useTranslation();
   return (
     <footer className="relative mt-24 border-t border-border bg-card/30">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -52,10 +54,7 @@ export function SiteFooter() {
                 Fit<span className="text-gradient">AI</span>
               </span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Your personal AI fitness and nutrition coach. Smarter workouts, better meals,
-              real results — all in one place.
-            </p>
+            <p className="mt-4 max-w-sm text-sm text-muted-foreground">{t("footer.tagline")}</p>
             <div className="mt-6 flex gap-3">
               {[Twitter, Instagram, Youtube, Github].map((Icon, i) => (
                 <a
@@ -71,10 +70,8 @@ export function SiteFooter() {
           </div>
 
           {COLS.map((col) => (
-            <div key={col.title}>
-              <h4 className="font-display text-sm font-semibold text-foreground">
-                {col.title}
-              </h4>
+            <div key={col.titleKey}>
+              <h4 className="font-display text-sm font-semibold text-foreground">{t(col.titleKey)}</h4>
               <ul className="mt-4 space-y-3">
                 {col.links.map((l) => (
                   <li key={l.to}>
@@ -82,7 +79,7 @@ export function SiteFooter() {
                       to={l.to}
                       className="text-sm text-muted-foreground transition hover:text-foreground"
                     >
-                      {l.label}
+                      {t(l.key)}
                     </Link>
                   </li>
                 ))}
@@ -93,11 +90,9 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} FitAI. All rights reserved.
+            © {new Date().getFullYear()} FitAI. {t("footer.rights")}
           </p>
-          <p className="text-xs text-muted-foreground">
-            Crafted for athletes, students, and everyone in between.
-          </p>
+          <p className="text-xs text-muted-foreground">{t("footer.crafted")}</p>
         </div>
       </div>
     </footer>

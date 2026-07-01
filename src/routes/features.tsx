@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { motion } from "framer-motion";
 import { Brain, Utensils, ChefHat, LineChart, Dumbbell, HeartPulse, Timer, Salad, Trophy, ScanLine, Bell, Cloud } from "lucide-react";
 
@@ -58,9 +58,7 @@ const GROUPS = [
 function FeaturesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Features"
-        title={<>A complete <span className="text-gradient">AI coaching stack</span></>}
+      <TranslatedPageHeader namespace="pages.features" />}
         description="Everything you need to train, fuel, and track — thoughtfully designed and beautifully connected."
       />
       <Section>

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
@@ -52,9 +52,7 @@ function ExerciseLibraryPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Exercise Library"
-        title={<>Every move, <span className="text-gradient">dialed in</span></>}
+      <TranslatedPageHeader namespace="pages.exerciseLibrary" />}
         description="Search by name or muscle group. Tap any exercise for form cues and smart swaps."
       />
       <Section>

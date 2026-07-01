@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -38,9 +38,7 @@ function BMIPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="BMI Calculator"
-        title={<>Know your <span className="text-gradient">baseline</span></>}
+      <TranslatedPageHeader namespace="pages.bmi" />}
         description="A quick, no-signup BMI calculator with useful context — not judgment."
       />
       <Section>

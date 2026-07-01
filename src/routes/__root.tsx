@@ -10,11 +10,16 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import "../i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 function NotFoundComponent() {
+  const { t } = useTranslation();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -28,7 +33,7 @@ function NotFoundComponent() {
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
           >
-            Back to home
+            {t("common.backToHome")}
           </Link>
         </div>
       </div>
@@ -39,6 +44,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  const { t } = useTranslation();
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -60,19 +66,37 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
           >
-            Try again
+            {t("common.tryAgain")}
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-secondary"
           >
-            Go home
+            {t("common.backToHome")}
           </a>
         </div>
       </div>
     </div>
   );
 }
+
+// Runs before hydration to apply persisted theme + language, preventing flash.
+const PRE_HYDRATION_SCRIPT = `
+(function(){try{
+  var t = localStorage.getItem('fitai:theme') || 'dark';
+  var resolved = t === 'system'
+    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : t;
+  var root = document.documentElement;
+  root.classList.toggle('dark', resolved === 'dark');
+  root.classList.toggle('light', resolved === 'light');
+  root.style.colorScheme = resolved;
+  var l = localStorage.getItem('fitai:lang');
+  if (!l) { var b = (navigator.language||'en').slice(0,2).toLowerCase(); l = (b === 'ar' ? 'ar' : 'en'); }
+  root.setAttribute('lang', l);
+  root.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+}catch(e){}})();
+`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -95,9 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "FitAI — Your Personal AI Fitness & Nutrition Coach" },
-      { name: "description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
-      { property: "og:description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
-      { name: "twitter:description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
+      { name: "twitter:description", content: "Personalized AI workouts, meal plans, macro tracking, and healthy recipes." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/54b358b9-0b86-44c5-8aa1-78584f6e9d04/id-preview-6e99492d--b8090af4-dd2c-46eb-a72a-a42aa13bb45e.lovable.app-1782900049535.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/54b358b9-0b86-44c5-8aa1-78584f6e9d04/id-preview-6e99492d--b8090af4-dd2c-46eb-a72a-a42aa13bb45e.lovable.app-1782900049535.png" },
     ],
@@ -108,9 +130,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [{ children: PRE_HYDRATION_SCRIPT }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -120,11 +143,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" dir="ltr" className="dark" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>
@@ -137,13 +160,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen">
-        <SiteNav />
-        <main>
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+      <ThemeProvider>
+        <LanguageProvider>
+          <div className="relative min-h-screen">
+            <SiteNav />
+            <main>
+              <Outlet />
+            </main>
+            <SiteFooter />
+          </div>
+        </LanguageProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

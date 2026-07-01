@@ -18,6 +18,7 @@ import {
   Plus,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import heroImage from "@/assets/hero-fitness.jpg";
 import nutritionImage from "@/assets/nutrition.jpg";
 import { Section } from "@/components/site/Section";
@@ -36,119 +37,22 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const FEATURES = [
-  {
-    icon: Brain,
-    title: "AI Workout Generator",
-    desc: "Instantly build training plans matched to your goals, equipment, and schedule.",
-    tint: "from-primary/30 to-primary/0",
-  },
-  {
-    icon: Utensils,
-    title: "Smart Meal Planner",
-    desc: "Weekly meal plans tuned to your calories, macros, and dietary preferences.",
-    tint: "from-accent/30 to-accent/0",
-  },
-  {
-    icon: ChefHat,
-    title: "AI Recipe Creator",
-    desc: "Turn any ingredients into a delicious, macro-balanced recipe in seconds.",
-    tint: "from-primary/30 to-accent/20",
-  },
-  {
-    icon: LineChart,
-    title: "Nutrition Analysis",
-    desc: "Break down any meal into calories, protein, carbs, fats, and micronutrients.",
-    tint: "from-accent/30 to-primary/20",
-  },
-  {
-    icon: Dumbbell,
-    title: "Exercise Library",
-    desc: "Hundreds of exercises with form cues, muscle targets, and swap suggestions.",
-    tint: "from-primary/30 to-primary/0",
-  },
-  {
-    icon: HeartPulse,
-    title: "Progress & Insights",
-    desc: "Track weight, workouts, and streaks with a beautiful, focused dashboard.",
-    tint: "from-accent/30 to-accent/0",
-  },
-];
+const FEATURE_KEYS = [
+  { icon: Brain, key: "workout", tint: "from-primary/30 to-primary/0" },
+  { icon: Utensils, key: "meal", tint: "from-accent/30 to-accent/0" },
+  { icon: ChefHat, key: "recipe", tint: "from-primary/30 to-accent/20" },
+  { icon: LineChart, key: "nutrition", tint: "from-accent/30 to-primary/20" },
+  { icon: Dumbbell, key: "library", tint: "from-primary/30 to-primary/0" },
+  { icon: HeartPulse, key: "progress", tint: "from-accent/30 to-accent/0" },
+] as const;
 
-const STEPS = [
-  {
-    icon: ClipboardList,
-    title: "Tell FitAI about you",
-    desc: "Share your goals, current fitness level, dietary preferences, and available equipment.",
-  },
-  {
-    icon: Wand2,
-    title: "Get your AI plan",
-    desc: "Instantly receive a personalized workout program and matching weekly meal plan.",
-  },
-  {
-    icon: Trophy,
-    title: "Train, eat, progress",
-    desc: "Log workouts and meals, watch your streak grow, and let FitAI adapt as you level up.",
-  },
-];
+const STEP_KEYS = [
+  { icon: ClipboardList, key: "profile" },
+  { icon: Wand2, key: "plan" },
+  { icon: Trophy, key: "progress" },
+] as const;
 
-const STATS = [
-  { value: "250K+", label: "Active athletes" },
-  { value: "12M+", label: "Meals planned" },
-  { value: "4.9★", label: "Average rating" },
-  { value: "98%", label: "Feel more consistent" },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Sarah K.",
-    role: "Marathon runner",
-    quote:
-      "The AI meal planner nails my macros for long-run days. I've never had this much energy in training.",
-  },
-  {
-    name: "Marcus D.",
-    role: "Software engineer",
-    quote:
-      "I finally stuck to a workout plan for six months. FitAI actually adapts when life gets busy.",
-  },
-  {
-    name: "Priya R.",
-    role: "New mom",
-    quote:
-      "Fast recipes from whatever's in my fridge — it's like having a nutritionist in my pocket.",
-  },
-  {
-    name: "Diego M.",
-    role: "College athlete",
-    quote:
-      "Lost 8kg without giving up my favorite foods. The AI made it feel effortless, not restrictive.",
-  },
-];
-
-const FAQS = [
-  {
-    q: "Is FitAI really personalized?",
-    a: "Yes. Every workout, meal plan, and recipe is generated from your goals, level, dietary preferences, and available equipment — then adapted as you log progress.",
-  },
-  {
-    q: "Do I need a gym?",
-    a: "No. FitAI creates programs for gym, home, bodyweight, or hybrid setups. Just tell us what you have.",
-  },
-  {
-    q: "Can I follow a specific diet?",
-    a: "Absolutely. Vegan, vegetarian, keto, Mediterranean, halal, gluten-free, and more are supported out of the box.",
-  },
-  {
-    q: "Is there a free plan?",
-    a: "Yes — you can generate workouts, plan meals, and use the BMI calculator for free. Premium unlocks unlimited AI and advanced tracking.",
-  },
-  {
-    q: "Will my data stay private?",
-    a: "Your data is encrypted in transit and at rest. We never sell it. Read our Privacy Policy for full details.",
-  },
-];
+const TESTIMONIAL_KEYS = ["sarah", "marcus", "priya", "diego"] as const;
 
 function HomePage() {
   return (
@@ -165,12 +69,13 @@ function HomePage() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-24">
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Athletic woman training in a modern gym"
+          alt=""
           width={1920}
           height={1280}
           className="h-full w-full object-cover object-center opacity-45"
@@ -188,7 +93,7 @@ function Hero() {
           className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
         >
           <Sparkles className="h-3.5 w-3.5" />
-          Powered by next-gen fitness AI
+          {t("home.heroBadge")}
         </motion.div>
 
         <motion.h1
@@ -197,8 +102,8 @@ function Hero() {
           transition={{ delay: 0.08 }}
           className="mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
         >
-          Your Personal <span className="text-gradient">AI Fitness</span>
-          <br className="hidden sm:block" /> & Nutrition Coach
+          {t("home.heroTitle1")} <span className="text-gradient">{t("home.heroTitleAI")}</span>
+          <br className="hidden sm:block" /> {t("home.heroTitle2")}
         </motion.h1>
 
         <motion.p
@@ -207,8 +112,7 @@ function Hero() {
           transition={{ delay: 0.15 }}
           className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg"
         >
-          AI-powered meal planning, custom workout generation, deep nutrition analysis,
-          and recipes made from whatever you have in the fridge — one clean, focused app.
+          {t("home.heroDesc")}
         </motion.p>
 
         <motion.div
@@ -221,15 +125,15 @@ function Hero() {
             to="/register"
             className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110"
           >
-            Get Started
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            {t("common.getStarted")}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180" />
           </Link>
           <Link
             to="/ai-workout"
             className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition hover:border-accent/50 hover:text-accent"
           >
             <Play className="h-4 w-4" />
-            Try AI Now
+            {t("common.tryAiNow")}
           </Link>
         </motion.div>
 
@@ -239,7 +143,7 @@ function Hero() {
           transition={{ delay: 0.4 }}
           className="mt-10 flex items-center gap-2 text-xs text-muted-foreground"
         >
-          <div className="flex -space-x-2">
+          <div className="flex -space-x-2 rtl:space-x-reverse">
             {["from-primary to-accent", "from-accent to-primary", "from-primary to-primary/40"].map((g, i) => (
               <span
                 key={i}
@@ -254,7 +158,7 @@ function Hero() {
               <Star key={i} className="h-3.5 w-3.5 fill-primary text-primary" />
             ))}
           </div>
-          <span>Loved by 250,000+ athletes worldwide</span>
+          <span>{t("home.heroSocial")}</span>
         </motion.div>
       </div>
     </section>
@@ -262,23 +166,21 @@ function Hero() {
 }
 
 function FeaturesGrid() {
+  const { t } = useTranslation();
   return (
     <Section id="features">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-wider text-primary">Features</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary">{t("home.featuresEyebrow")}</p>
         <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
-          Everything you need, <span className="text-gradient">nothing you don't</span>
+          {t("home.featuresTitle1")} <span className="text-gradient">{t("home.featuresTitleAccent")}</span>
         </h2>
-        <p className="mt-4 text-muted-foreground">
-          Six AI-powered tools designed to keep you consistent — whether you're chasing PRs, dropping
-          body fat, or just trying to feel good.
-        </p>
+        <p className="mt-4 text-muted-foreground">{t("home.featuresDesc")}</p>
       </div>
 
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((f, i) => (
+        {FEATURE_KEYS.map((f, i) => (
           <motion.div
-            key={f.title}
+            key={f.key}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -290,8 +192,8 @@ function FeaturesGrid() {
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary ring-1 ring-primary/30">
                 <f.icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-5 font-display text-xl font-bold">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
+              <h3 className="mt-5 font-display text-xl font-bold">{t(`home.features.${f.key}.title`)}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{t(`home.features.${f.key}.desc`)}</p>
             </div>
           </motion.div>
         ))}
@@ -301,36 +203,37 @@ function FeaturesGrid() {
 }
 
 function HowItWorks() {
+  const { t } = useTranslation();
   return (
     <Section>
       <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-8 sm:p-12">
         <div className="pointer-events-none absolute inset-0 bg-hero-grid opacity-20" />
         <div className="relative">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">How it works</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t("home.howEyebrow")}</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
-              From zero to trained in <span className="text-gradient">three steps</span>
+              {t("home.howTitle1")} <span className="text-gradient">{t("home.howTitleAccent")}</span>
             </h2>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {STEPS.map((s, i) => (
+            {STEP_KEYS.map((s, i) => (
               <motion.div
-                key={s.title}
+                key={s.key}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 className="relative rounded-2xl border border-border bg-background/60 p-6"
               >
-                <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-primary-foreground">
-                  Step {i + 1}
+                <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-primary-foreground rtl:left-auto rtl:right-6">
+                  {t("home.step")} {i + 1}
                 </span>
                 <div className="mt-2 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
                   <s.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 font-display text-lg font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-bold">{t(`home.steps.${s.key}.title`)}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{t(`home.steps.${s.key}.desc`)}</p>
               </motion.div>
             ))}
           </div>
@@ -341,6 +244,13 @@ function HowItWorks() {
 }
 
 function Stats() {
+  const { t } = useTranslation();
+  const STATS = [
+    { value: "250K+", label: t("home.statsActiveAthletes") },
+    { value: "12M+", label: t("home.statsMealsPlanned") },
+    { value: "4.9★", label: t("home.statsAvgRating") },
+    { value: "98%", label: t("home.statsConsistent") },
+  ];
   return (
     <Section>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -363,53 +273,54 @@ function Stats() {
 }
 
 function Testimonials() {
+  const { t } = useTranslation();
   return (
     <Section>
       <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-primary">Testimonials</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-primary">{t("home.testimonialsEyebrow")}</p>
           <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Real people, <span className="text-gradient">real results</span>
+            {t("home.testimonialsTitle1")} <span className="text-gradient">{t("home.testimonialsTitleAccent")}</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            FitAI isn't just an app — it's the coach thousands wish they had years ago.
-          </p>
+          <p className="mt-4 text-muted-foreground">{t("home.testimonialsDesc")}</p>
           <div className="mt-6 flex items-center gap-3">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-primary text-primary" />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground">4.9 average from 12,000+ reviews</span>
+            <span className="text-sm text-muted-foreground">{t("home.testimonialsRating")}</span>
           </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.figure
-              key={t.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
-              className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur"
-            >
-              <Quote className="h-6 w-6 text-primary/70" />
-              <blockquote className="mt-3 text-sm text-foreground/90">"{t.quote}"</blockquote>
-              <figcaption className="mt-4 flex items-center gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground">
-                  {t.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
-                </div>
-              </figcaption>
-            </motion.figure>
-          ))}
+          {TESTIMONIAL_KEYS.map((k, i) => {
+            const name = t(`home.testimonials.${k}.name`);
+            return (
+              <motion.figure
+                key={k}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur"
+              >
+                <Quote className="h-6 w-6 text-primary/70" />
+                <blockquote className="mt-3 text-sm text-foreground/90">
+                  "{t(`home.testimonials.${k}.quote`)}"
+                </blockquote>
+                <figcaption className="mt-4 flex items-center gap-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground">
+                    {name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold">{name}</div>
+                    <div className="text-xs text-muted-foreground">{t(`home.testimonials.${k}.role`)}</div>
+                  </div>
+                </figcaption>
+              </motion.figure>
+            );
+          })}
         </div>
       </div>
     </Section>
@@ -417,27 +328,26 @@ function Testimonials() {
 }
 
 function FAQ() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState<number | null>(0);
+  const items = t("home.faq", { returnObjects: true }) as { q: string; a: string }[];
   return (
     <Section>
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">FAQ</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t("home.faqEyebrow")}</p>
           <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Frequently asked <span className="text-gradient">questions</span>
+            {t("home.faqTitle1")} <span className="text-gradient">{t("home.faqTitleAccent")}</span>
           </h2>
         </div>
         <div className="mt-10 space-y-3">
-          {FAQS.map((f, i) => {
+          {items.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div
-                key={f.q}
-                className="overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur"
-              >
+              <div key={i} className="overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left rtl:text-right"
                   aria-expanded={isOpen}
                 >
                   <span className="font-medium">{f.q}</span>
@@ -463,6 +373,7 @@ function FAQ() {
 }
 
 function FinalCTA() {
+  const { t } = useTranslation();
   return (
     <Section>
       <div className="relative overflow-hidden rounded-3xl border border-primary/30 p-10 sm:p-16">
@@ -476,24 +387,22 @@ function FinalCTA() {
         <div className="absolute inset-0 bg-gradient-to-br from-background/70 via-background/80 to-background/95" />
         <div className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
-            Ready to train <span className="text-gradient">smarter</span>?
+            {t("home.ctaTitle1")} <span className="text-gradient">{t("home.ctaTitleAccent")}</span>?
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Join 250,000+ people using FitAI to build the body — and habits — they've always wanted.
-          </p>
+          <p className="mt-4 text-muted-foreground">{t("home.ctaDesc")}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/register"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110"
             >
-              Create free account
-              <ArrowRight className="h-4 w-4" />
+              {t("common.createFreeAccount")}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
             <Link
               to="/features"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-6 py-3 text-sm font-semibold backdrop-blur transition hover:border-accent/50"
             >
-              Explore features
+              {t("home.exploreFeatures")}
             </Link>
           </div>
         </div>

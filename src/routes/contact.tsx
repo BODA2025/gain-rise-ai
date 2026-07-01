@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { Mail, MapPin, MessageCircle, Send } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
@@ -18,9 +18,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Contact"
-        title={<>Say <span className="text-gradient">hello</span></>}
+      <TranslatedPageHeader namespace="pages.contact" />}
         description="Feedback, partnerships, or just want to say hi — we read every message."
       />
       <Section>

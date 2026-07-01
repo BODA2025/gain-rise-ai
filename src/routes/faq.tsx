@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
@@ -32,9 +32,7 @@ function FAQPage() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <>
-      <PageHeader
-        eyebrow="FAQ"
-        title={<>Frequently asked <span className="text-gradient">questions</span></>}
+      <TranslatedPageHeader namespace="pages.faq" />}
         description="Everything you might want to know before diving in."
       />
       <Section>

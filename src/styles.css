@@ -41,10 +41,11 @@
   --color-sky: var(--sky-accent);
 }
 
-:root {
+:root,
+.dark {
   --radius: 0.9rem;
 
-  /* Dark theme by default — FitAI brand */
+  /* Dark theme (default) — FitAI brand */
   --background: oklch(0.19 0.03 250);          /* #0F172A */
   --foreground: oklch(0.97 0.01 240);
 
@@ -73,9 +74,9 @@
   --input: oklch(1 0 0 / 10%);
   --ring: oklch(0.74 0.19 145);
 
-  --brand: oklch(0.74 0.19 145);               /* #22C55E */
-  --brand-2: oklch(0.66 0.18 145);             /* #16A34A */
-  --sky-accent: oklch(0.78 0.14 220);          /* #38BDF8 */
+  --brand: oklch(0.74 0.19 145);
+  --brand-2: oklch(0.66 0.18 145);
+  --sky-accent: oklch(0.78 0.14 220);
 
   --chart-1: oklch(0.74 0.19 145);
   --chart-2: oklch(0.78 0.14 220);
@@ -83,6 +84,41 @@
   --chart-4: oklch(0.82 0.12 195);
   --chart-5: oklch(0.55 0.15 260);
 }
+
+.light {
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.19 0.03 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.03 250);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.03 250);
+
+  --primary: oklch(0.66 0.18 145);
+  --primary-foreground: oklch(0.99 0.005 240);
+
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.19 0.03 250);
+
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.45 0.02 250);
+
+  --accent: oklch(0.62 0.15 220);
+  --accent-foreground: oklch(0.99 0.005 240);
+
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.2 0.03 250 / 12%);
+  --input: oklch(0.2 0.03 250 / 14%);
+  --ring: oklch(0.66 0.18 145);
+
+  --brand: oklch(0.66 0.18 145);
+  --brand-2: oklch(0.55 0.16 145);
+  --sky-accent: oklch(0.62 0.15 220);
+}
+
 
 @layer base {
   * {
@@ -94,12 +130,16 @@
   }
 
   body {
-    background: radial-gradient(ellipse at top, oklch(0.24 0.04 250) 0%, var(--background) 55%) no-repeat;
+    background: radial-gradient(ellipse at top, color-mix(in oklab, var(--background) 90%, var(--primary) 6%) 0%, var(--background) 55%) no-repeat;
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    transition: background-color 240ms ease, color 240ms ease;
   }
+
+  [dir="rtl"] body { font-family: "Cairo", "Noto Kufi Arabic", var(--font-sans); }
+
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
