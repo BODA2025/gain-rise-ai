@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -28,7 +28,7 @@ const SECTIONS = [
 function TermsPage() {
   return (
     <>
-      <PageHeader eyebrow="Legal" title="Terms of Service" description="Last updated July 1, 2026" />
+      <TranslatedPageHeader namespace="pages.terms" />
       <Section>
         <div className="mx-auto max-w-3xl space-y-8">
           {SECTIONS.map((s) => (

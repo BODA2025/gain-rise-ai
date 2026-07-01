@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { motion } from "framer-motion";
 import { Rocket, Heart, ShieldCheck, Users } from "lucide-react";
 
@@ -26,11 +26,7 @@ const VALUES = [
 function AboutPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="About"
-        title={<>Fitness that <span className="text-gradient">adapts to you</span></>}
-        description="FitAI was born from a simple frustration: generic plans don't work. We built the coach we wished we had — one that listens, learns, and shows up every day."
-      />
+      <TranslatedPageHeader namespace="pages.about" />
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>

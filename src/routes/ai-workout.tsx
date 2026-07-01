@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Dumbbell, Timer, Repeat } from "lucide-react";
@@ -40,11 +40,7 @@ function WorkoutGenPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="AI Workout Generator"
-        title={<>A perfect session, <span className="text-gradient">every time</span></>}
-        description="Tell FitAI your goal and gear. Get a smart, progressive plan tailored to today."
-      />
+      <TranslatedPageHeader namespace="pages.aiWorkout" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useMemo, useState } from "react";
 import { Sparkles, Utensils } from "lucide-react";
 import { motion } from "framer-motion";
@@ -40,11 +40,7 @@ function MealPlannerPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="AI Meal Planner"
-        title={<>Your week, <span className="text-gradient">deliciously planned</span></>}
-        description="Answer a few questions. Get a 7-day meal plan built around your calories, macros, and taste."
-      />
+      <TranslatedPageHeader namespace="pages.aiMealPlanner" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

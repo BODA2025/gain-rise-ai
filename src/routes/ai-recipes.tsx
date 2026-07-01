@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Clock, Flame, ChefHat } from "lucide-react";
@@ -55,11 +55,7 @@ function AIRecipesPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="AI Recipes"
-        title={<>Cook with <span className="text-gradient">what you have</span></>}
-        description="Enter your ingredients. FitAI writes a recipe that tastes great and hits your macros."
-      />
+      <TranslatedPageHeader namespace="pages.aiRecipes" />
       <Section>
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">

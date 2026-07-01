@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { PageHeader } from "@/components/site/PageHeader";
+import { TranslatedPageHeader } from "@/components/site/TranslatedPageHeader";
 import { Clock, Flame } from "lucide-react";
 import { motion } from "framer-motion";
 import nutritionImage from "@/assets/nutrition.jpg";
@@ -32,11 +32,7 @@ const RECIPES = [
 function HealthyRecipesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Healthy Recipes"
-        title={<>Eat well, <span className="text-gradient">every day</span></>}
-        description="A curated library of chef-tested, macro-balanced recipes you'll actually make twice."
-      />
+      <TranslatedPageHeader namespace="pages.healthyRecipes" />
       <Section>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {RECIPES.map((r, i) => (
