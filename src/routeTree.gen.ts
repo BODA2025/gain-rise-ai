@@ -9,8 +9,104 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as HealthyRecipesRouteImport } from './routes/healthy-recipes'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ExerciseLibraryRouteImport } from './routes/exercise-library'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BmiCalculatorRouteImport } from './routes/bmi-calculator'
+import { Route as AiWorkoutRouteImport } from './routes/ai-workout'
+import { Route as AiRecipesRouteImport } from './routes/ai-recipes'
+import { Route as AiMealPlannerRouteImport } from './routes/ai-meal-planner'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthyRecipesRoute = HealthyRecipesRouteImport.update({
+  id: '/healthy-recipes',
+  path: '/healthy-recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExerciseLibraryRoute = ExerciseLibraryRouteImport.update({
+  id: '/exercise-library',
+  path: '/exercise-library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BmiCalculatorRoute = BmiCalculatorRouteImport.update({
+  id: '/bmi-calculator',
+  path: '/bmi-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiWorkoutRoute = AiWorkoutRouteImport.update({
+  id: '/ai-workout',
+  path: '/ai-workout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRecipesRoute = AiRecipesRouteImport.update({
+  id: '/ai-recipes',
+  path: '/ai-recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiMealPlannerRoute = AiMealPlannerRouteImport.update({
+  id: '/ai-meal-planner',
+  path: '/ai-meal-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +115,256 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-meal-planner': typeof AiMealPlannerRoute
+  '/ai-recipes': typeof AiRecipesRoute
+  '/ai-workout': typeof AiWorkoutRoute
+  '/bmi-calculator': typeof BmiCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/exercise-library': typeof ExerciseLibraryRoute
+  '/faq': typeof FaqRoute
+  '/features': typeof FeaturesRoute
+  '/healthy-recipes': typeof HealthyRecipesRoute
+  '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-meal-planner': typeof AiMealPlannerRoute
+  '/ai-recipes': typeof AiRecipesRoute
+  '/ai-workout': typeof AiWorkoutRoute
+  '/bmi-calculator': typeof BmiCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/exercise-library': typeof ExerciseLibraryRoute
+  '/faq': typeof FaqRoute
+  '/features': typeof FeaturesRoute
+  '/healthy-recipes': typeof HealthyRecipesRoute
+  '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-meal-planner': typeof AiMealPlannerRoute
+  '/ai-recipes': typeof AiRecipesRoute
+  '/ai-workout': typeof AiWorkoutRoute
+  '/bmi-calculator': typeof BmiCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/exercise-library': typeof ExerciseLibraryRoute
+  '/faq': typeof FaqRoute
+  '/features': typeof FeaturesRoute
+  '/healthy-recipes': typeof HealthyRecipesRoute
+  '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/ai-meal-planner'
+    | '/ai-recipes'
+    | '/ai-workout'
+    | '/bmi-calculator'
+    | '/contact'
+    | '/dashboard'
+    | '/exercise-library'
+    | '/faq'
+    | '/features'
+    | '/healthy-recipes'
+    | '/login'
+    | '/privacy'
+    | '/profile'
+    | '/register'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/ai-meal-planner'
+    | '/ai-recipes'
+    | '/ai-workout'
+    | '/bmi-calculator'
+    | '/contact'
+    | '/dashboard'
+    | '/exercise-library'
+    | '/faq'
+    | '/features'
+    | '/healthy-recipes'
+    | '/login'
+    | '/privacy'
+    | '/profile'
+    | '/register'
+    | '/terms'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/ai-meal-planner'
+    | '/ai-recipes'
+    | '/ai-workout'
+    | '/bmi-calculator'
+    | '/contact'
+    | '/dashboard'
+    | '/exercise-library'
+    | '/faq'
+    | '/features'
+    | '/healthy-recipes'
+    | '/login'
+    | '/privacy'
+    | '/profile'
+    | '/register'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AiMealPlannerRoute: typeof AiMealPlannerRoute
+  AiRecipesRoute: typeof AiRecipesRoute
+  AiWorkoutRoute: typeof AiWorkoutRoute
+  BmiCalculatorRoute: typeof BmiCalculatorRoute
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
+  ExerciseLibraryRoute: typeof ExerciseLibraryRoute
+  FaqRoute: typeof FaqRoute
+  FeaturesRoute: typeof FeaturesRoute
+  HealthyRecipesRoute: typeof HealthyRecipesRoute
+  LoginRoute: typeof LoginRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/healthy-recipes': {
+      id: '/healthy-recipes'
+      path: '/healthy-recipes'
+      fullPath: '/healthy-recipes'
+      preLoaderRoute: typeof HealthyRecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exercise-library': {
+      id: '/exercise-library'
+      path: '/exercise-library'
+      fullPath: '/exercise-library'
+      preLoaderRoute: typeof ExerciseLibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bmi-calculator': {
+      id: '/bmi-calculator'
+      path: '/bmi-calculator'
+      fullPath: '/bmi-calculator'
+      preLoaderRoute: typeof BmiCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-workout': {
+      id: '/ai-workout'
+      path: '/ai-workout'
+      fullPath: '/ai-workout'
+      preLoaderRoute: typeof AiWorkoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-recipes': {
+      id: '/ai-recipes'
+      path: '/ai-recipes'
+      fullPath: '/ai-recipes'
+      preLoaderRoute: typeof AiRecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-meal-planner': {
+      id: '/ai-meal-planner'
+      path: '/ai-meal-planner'
+      fullPath: '/ai-meal-planner'
+      preLoaderRoute: typeof AiMealPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +377,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AiMealPlannerRoute: AiMealPlannerRoute,
+  AiRecipesRoute: AiRecipesRoute,
+  AiWorkoutRoute: AiWorkoutRoute,
+  BmiCalculatorRoute: BmiCalculatorRoute,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
+  ExerciseLibraryRoute: ExerciseLibraryRoute,
+  FaqRoute: FaqRoute,
+  FeaturesRoute: FeaturesRoute,
+  HealthyRecipesRoute: HealthyRecipesRoute,
+  LoginRoute: LoginRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
