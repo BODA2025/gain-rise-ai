@@ -94,6 +94,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "FitAI — Your Personal AI Fitness & Nutrition Coach" },
+      { name: "description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
+      { property: "og:description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
+      { name: "twitter:description", content: "FitAI Coach is a modern AI-powered web app for personalized fitness and nutrition guidance." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/54b358b9-0b86-44c5-8aa1-78584f6e9d04/id-preview-6e99492d--b8090af4-dd2c-46eb-a72a-a42aa13bb45e.lovable.app-1782900049535.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/54b358b9-0b86-44c5-8aa1-78584f6e9d04/id-preview-6e99492d--b8090af4-dd2c-46eb-a72a-a42aa13bb45e.lovable.app-1782900049535.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
